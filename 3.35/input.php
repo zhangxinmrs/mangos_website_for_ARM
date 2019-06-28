@@ -40,8 +40,8 @@
             <div class="heading">游戏版本</div>
             <div class="inputwrap">                
               <select size="1" name="expansion">                  
-                <option value="0" selected>经典版</option> 
-                <option value="1">TBC</option>
+                <!--option value="0" selected>经典版</option--!> 
+                <!--option value="1">TBC</option--!>
                 <option value="2">WLK</option>
                 <!--option value="3">CTM</option--!> 
                 <!--option value="4">MOP</option--!>               
@@ -83,7 +83,7 @@
                 echo "
 		 <center>
                   <button class=\"homepage\" onclick=\"window.location.href='$page';\">重新填写</button>
-                </center> 
+                 </center> 
 		";
                 $passed = false;
               }
@@ -94,6 +94,11 @@
                 if ($account['cnt'] != 0)
                 {
                   echo "<div class=\"error\">该名称的帐户已经存在！请尝试另一个。</div>"; 
+                  echo "
+                   <center>
+                    <button class=\"homepage\" onclick=\"window.location.href='$page';\">重新填写</button>
+                   </center> 
+                  ";
                   $passed = false;
                 }
                 
@@ -102,18 +107,33 @@
                   if($_POST['pass'] !=$_POST['pass2'])
                   {
                     echo "<div class=\"error\">2次密码输入不匹配！请再输入一次！</div>"; 
+                    echo "
+                     <center>
+                      <button class=\"homepage\" onclick=\"window.location.href='$page';\">重新填写</button>
+                     </center> 
+                    ";
                     $passed = false;
                   }
                 }
                 else
                 {
                   echo "<div class=\"error\">密码太短，密码不能短于".$minpasslenght."个字符。</div>"; 
+                  echo "
+                   <center>
+                    <button class=\"homepage\" onclick=\"window.location.href='$page';\">重新填写</button>
+                   </center> 
+                  ";
                   $passed = false;  
                 }
                 
 		if (!filter_var($_REQUEST['mail'], FILTER_VALIDATE_EMAIL))
                 {
                   echo "<div class=\"error\">你输入的电子邮件格式不对，请提供一个有效的电子邮件！</div>"; 
+                  echo "
+                   <center>
+                    <button class=\"homepage\" onclick=\"window.location.href='$page';\">重新填写</button>
+                   </center> 
+                  ";
                   $passed = false;
                 }
                 else
@@ -125,6 +145,11 @@
                     if ($mail['cnt'] != 0)
                     {
                       echo "<div class=\"error\">此电子邮件帐户已经存在！请用其他邮件地址注册。</div>"; 
+                      echo "
+                       <center>
+                        <button class=\"homepage\" onclick=\"window.location.href='$page';\">重新填写</button>
+                       </center> 
+                      ";
                       $passed = false;
                     }  
                   }
@@ -134,12 +159,22 @@
                 {
                  $_POST['expansion'] = $expansion;
                  echo "<div class=\"warning\">此服务器没有你选择的".GetExpansionName($_POST['expansion'])."游戏版本</div>"; 
+                 echo "
+                  <center>
+                   <button class=\"homepage\" onclick=\"window.location.href='$page';\">重新填写</button>
+                  </center> 
+                 ";
                 }
                 
                 if($_POST['expansion'] < 0)
                 {
                   $_POST['expansion'] = 0;
                   echo "<div class=\"warning\">你所选择的游戏版本不存在，请选择经典版。</div>"; 
+                  echo "
+                   <center>
+                    <button class=\"homepage\" onclick=\"window.location.href='$page';\">重新填写</button>
+                   </center> 
+                  ";
                 } 
           
                 if ($passed)
