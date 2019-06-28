@@ -3,5 +3,3 @@
   include "input.php";
   ?>
 <html> </html> 
-
-

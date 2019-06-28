@@ -7,13 +7,13 @@
 # 添加功能：登陆器下载，论坛，修改密码，找回密码，gmlevel设置                                                                  #
 #                             请编辑以下配置参数                               #
 ################################################################################
-$expansion = 0;                        // 默认游戏版本 (0 = 经典版, 1 = TBC, 2 = WLK, 3 =CTM, 4 = MOP)
+$expansion = 2;                        // 默认游戏版本 (0 = 经典版, 1 = TBC, 2 = WLK, 3 =CTM, 4 = MOP)
 $minpasslenght = 6;                   // 最短密码长度限制
 $dbhost = '127.0.0.1';                // 数据库地址   = localhost (127.0.0.1)
 $dbport = '3306';                   // 数据库端口   = 3306
 $dbuser = 'mangos';                     // 数据库用户名 = root
 $dbpass = 'mangos';                     // 数据库密码
-$dbname = 'realmd2';                   // 帐号数据库
+$dbname = 'acore_auth';                   // 帐号数据库
 $servername = 'MaNgos'; 		 // 服务器名称
 $ip = "127.0.0.1";                    // 服务器地址
 $oneaccpermail = true;                // 是否只允许电子邮件注册? 'false' 取消检测
@@ -26,7 +26,7 @@ $bbs = "/bbs";                        // 网站论坛
 ################################################################################
 
 error_reporting(0);
-$dbh = new PDO("mysql:host=127.0.0.1;dbname=acore_auth", "mangos", "mangos");
+$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 function GetExpansionName($expansion)

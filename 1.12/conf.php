@@ -26,7 +26,7 @@ $bbs = "/bbs";                        // 网站论坛
 ################################################################################
 
 error_reporting(0);
-$dbh = new PDO("mysql:host=127.0.0.1;dbname=realmd", "mangos", "mangos");
+$dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", "$dbuser", "$dbpass");
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 function GetExpansionName($expansion)
