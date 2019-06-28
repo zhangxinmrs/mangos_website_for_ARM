@@ -1,0 +1,23 @@
+/* CSS Document */
+body { background-image: url(images/background.jpg); background-position: top center; background-repeat: no-repeat; background-color: black; margin: 0px; font-family: Verdana; font-size: 13px;}
+
+
+#wrap { background-image: url(images/logo.gif); background-position: top center; background-repeat: no-repeat; height: 590px; overflow: hidden; width: 362px; margin-top: 20px; }
+
+input#repass, button { height: 20px; width: 100px; ); overflow: hidden; background-position: top; border: none; background-color: transparent; color:#571a00; line-height: 20px; cursor: pointer;}
+#welc    { margin-top: 125px; text-align: center;}
+#innerwrap  { margin-top: 20px; text-align: left;}
+
+.test li{float:left;} 
+.heading  {  color: #571a00; font-weight: bold; }
+.inputwrap { width: 362px; height: 40px; background-image: url(images/input.png);}
+.inputwrap input, .inputwrap select  { border: 1px solid #7b5524; background-color: white; margin-top: 10px; height: 20px; margin-left: 11px; width: 340px; font-size: 12px; line-height: 16px;}
+input#checkbox { cursor: pointer; }
+input#submit, button { height: 66px; width: 203px; background-image: url(images/button.gif); overflow: hidden; background-position: top; border: none; background-color: transparent; color: #ffc140; line-height: 66px; cursor: pointer;}
+input#submit:hover, button:hover  { background-position: center; }
+input#submit { margin-top: -40px; float: center;}
+.failed, .finished { text-align: center; color: #600100; margin: 10px;}
+h2  { text-align: center; font-size: 15px; font-weight: bold; text-decoration: none; color: #552100;}
+.warning  { background-image: url(images/warning.png); background-position: top left; background-repeat: no-repeat; padding-left: 60px; height: 48px; margin-top: 10px; color: #bd3e1b;}
+.error  { background-image: url(images/error.png); background-position: top left; background-repeat: no-repeat; padding-left: 60px; margin-top: 10px; height: 48px; color: #a00003;}
+.done  { background-image: url(images/done.png); background-position: top left; background-repeat: no-repeat; padding-left: 60px; margin-top: 10px; color: #285900;}
