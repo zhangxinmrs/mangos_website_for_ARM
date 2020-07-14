@@ -1,5 +1,6 @@
 # mangos_website_for_ARM
 apt-get install nginx php git php-cli php-fpm php-gd php-curl php-cgi php-mcrypt php-mysql
+
 vi /etc/nginx/sites-available/default  
 将其中的如下内容  
 location / {  
