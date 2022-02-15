@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <?php
   include "conf.php";
 ?>
@@ -60,8 +60,8 @@
               <li id="repass"><!--a href="dlq.rar" style="color:#222222">登陆器下载</a--!>
               <a href="repass.php" style="color:#222222">修改密码</a>
               <a href="fipass.php" style="color:#222222">找回密码</a>
-              <!--a href="/bbs" style="color:#222222"> 进入论坛</a--!></li>         
-               </center>
+              <!--a href="/bbs" style="color:#222222"> 进入论坛</a--!></li>
+              </center>
             </div>                                    
           </form>                           
           <?php
@@ -173,25 +173,28 @@
                 } 
           
                 if ($passed)
-                {
+		{
 		  // Constants
                   $salt = random_bytes(32);
-                  $g = gmp_init(7);
-                  $N = gmp_init('894B645E89E1535BBDAD5B8B290650530801B18EBFBF5E8FAB3C82872A3E9BB7', 16);
-                  // Calculate first hash
-                  $h1 = sha1(strtoupper($_POST[login].':'.$_POST[pass]), TRUE);
-                  // Calculate second hash
-                  $h2 = sha1($salt.$h1, TRUE);
-                  // Convert to integer (little-endian)
-                  $h2 = gmp_import($h2, 1, GMP_LSW_FIRST);
-                  // g^h2 mod N
-                  $verifier = gmp_powm($g, $h2, $N);
-                  // Convert back to a byte array (little-endian)
-                  $verifier = gmp_export($verifier, 1, GMP_LSW_FIRST);
-                  // Pad to 32 bytes, remember that zeros go on the end in little-endian!
-                  $verifier = str_pad($verifier, 32, chr(0), STR_PAD_RIGHT);
+		  $g = gmp_init(7);
+		  $N = gmp_init('894B645E89E1535BBDAD5B8B290650530801B18EBFBF5E8FAB3C82872A3E9BB7', 16);
+		  // Calculate first hash
+		  $h1 = sha1(strtoupper($_POST[login].':'.$_POST[pass]), TRUE);
+		  // Calculate second hash
+		  $h2 = sha1($salt.$h1, TRUE);
+		  // Convert to integer (little-endian)
+		  $h2 = gmp_import($h2, 1, GMP_LSW_FIRST);
+		  // g^h2 mod N
+		  $verifier = gmp_powm($g, $h2, $N);
+		  // Convert back to a byte array (little-endian)
+		  $verifier = gmp_export($verifier, 1, GMP_LSW_FIRST);
+		  // Pad to 32 bytes, remember that zeros go on the end in little-endian!
+		  $verifier = str_pad($verifier, 32, chr(0), STR_PAD_RIGHT);
+		  //$new1 = bin2hex($salt);
+		  //$new2 = bin2hex($verifier);
+		  //echo "<div class=\"error\">salt:$new1</div>";
+		  //echo "<div class=\"error\">verifier:$new2</div>";
                   $sql = "INSERT INTO `account` (`username`,`salt`, `verifier`, `email`, `expansion`) VALUES (UPPER('$_POST[login]'), '$salt', '$verifier', '$_POST[mail]', '$_POST[expansion]');";
-                  //$sql = "INSERT INTO `account` (`username`,`sha_pass_hash`, `email`, `expansion`) VALUES (UPPER('$_POST[login]'), SHA1(CONCAT(UPPER('$_POST[login]'),':',UPPER('$_POST[pass]'))), '$_POST[mail]', '$_POST[expansion]');";
 		  $dbh->exec($sql);
 		  $stmt=$dbh->query("SELECT Count(1) as cnt FROM account WHERE UPPER(`username`) = UPPER('$_POST[login]');");
 		  $account=$stmt->fetch(PDO::FETCH_BOTH);
